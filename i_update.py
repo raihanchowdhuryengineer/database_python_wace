@@ -5,8 +5,8 @@ from mysql.connector import Error
 my_db = MyConn.connect(
     host='localhost',
     user='root',
-    password='jojosiwa',
-    database='practice'
+    password='admin',
+    database='Learincoding'
 )
 
 try:
