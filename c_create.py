@@ -6,5 +6,5 @@ mydb = MyConn.connect(
         password='admin')
 
 db_cursor=mydb.cursor()
-db_cursor.execute("Create Database Waceone")
+db_cursor.execute("Create Database Learincoding")
 print("Database created Succesfully")
