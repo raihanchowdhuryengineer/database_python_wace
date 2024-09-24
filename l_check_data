@@ -1,0 +1,4 @@
+mysql -u root -p
+admin
+
+select *from learncoding.emp;
