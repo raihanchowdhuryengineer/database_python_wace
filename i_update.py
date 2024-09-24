@@ -1,27 +1,37 @@
 import mysql.connector as MyConn
 from mysql.connector import Error
 
-
 # Establish the database connection
 my_db = MyConn.connect(
-        host='localhost',
-        user='root',
-        password='admin',
-        database='Learincoding'
-    )
+    host='localhost',
+    user='root',
+    password='jojosiwa',
+    database='practice'
+)
 
-db_cursor = my_db.cursor()
+try:
+    db_cursor = my_db.cursor()
 
-db_updatedata = 'UPDATE emp SET roll = %s WHERE Ename = %s'
-db_value = (30,"Aydian")
-    
-db_cursor.execute(db_updatedata, db_value)
+    # Check current data
+    db_cursor.execute("SELECT * FROM emp WHERE Ename = '30'")
+    results = db_cursor.fetchall()
+    print("Current Data:", results)
 
+    # Update the name from 'Aydian' to 'Ariyan' based on roll number
+    db_updatedata = 'UPDATE emp SET Ename = %s WHERE roll = %s'
+    db_value = ("Abdullah", 30)
 
-print(f"Rows affected: {db_cursor.rowcount}")
+    db_cursor.execute(db_updatedata, db_value)
 
+    print(f"Rows affected: {db_cursor.rowcount}")
 
-my_db.commit()
+    # Commit the changes to the database
+    my_db.commit()
+    print("Data Updated")
 
-print("Data Updated")
-
+except Error as e:
+    print(f"Error: {e}")
+finally:
+    if my_db.is_connected():
+        db_cursor.close()
+        my_db.close()
